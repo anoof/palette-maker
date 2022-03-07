@@ -25,6 +25,11 @@ class App extends Component {
 			<Routes>
 				<Route exact path="/" element={<PaletteListWrapper />} />
 				<Route exact path="/palette/:id" element={<PaletteWrapper />} />
+				<Route
+					exact
+					path="/palette/:paletteId/:colorId"
+					element={<h1>Single Color Page!</h1>}
+				/>
 			</Routes>
 		);
 	}
