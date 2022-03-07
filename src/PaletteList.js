@@ -21,7 +21,7 @@ const styles = {
 	nav: {
 		display: "flex",
 		width: "100%",
-		justifyContent: "space-between"
+		justifyContent: "space-between",
 	},
 	palettes: {
 		boxSizing: "border-box",
@@ -33,20 +33,26 @@ const styles = {
 };
 
 class PaletteList extends Component {
+	goToPalette(id) {
+		this.props.navigate(`/palette/${id}`);
+	}
 	render() {
 		const { palettes, classes } = this.props;
 		return (
 			<div className={classes.root}>
-                <div className={classes.container}>
-                    <nav className={classes.nav}>
-                        <h1>Palette Maker</h1>
-                    </nav>
-                    <div className={classes.palettes}>
-                        {palettes.map(palette => (
-                            <MiniPalette {...palette} />
-                        ))}
-                    </div>
-                </div>			
+				<div className={classes.container}>
+					<nav className={classes.nav}>
+						<h1>Palette Maker</h1>
+					</nav>
+					<div className={classes.palettes}>
+						{palettes.map((palette) => (
+							<MiniPalette
+								{...palette}
+								handleClick={() => this.goToPalette(palette.id)}
+							/>
+						))}
+					</div>
+				</div>
 			</div>
 		);
 	}
