@@ -5,6 +5,7 @@ import Palette from "./Palette";
 import seedColors from "./seedColors";
 import { generatePalette } from "./colorHelpers";
 import PaletteList from "./PaletteList";
+import SingleColorPalette from "./SingleColorPalette";
 
 function findPalette(id) {
 	return seedColors.find(function (palette) {
@@ -19,6 +20,10 @@ function PaletteListWrapper() {
 	const navigate = useNavigate();
 	return <PaletteList palettes={seedColors} navigate={navigate} />;
 }
+function SingleColorPaletteWrapper() {
+	const { paletteId, colorId } = useParams();
+	return <SingleColorPalette palette={generatePalette(findPalette(paletteId))} colorId={colorId}/>;
+}
 class App extends Component {
 	render() {
 		return (
@@ -28,7 +33,7 @@ class App extends Component {
 				<Route
 					exact
 					path="/palette/:paletteId/:colorId"
-					element={<h1>Single Color Page!</h1>}
+					element={<SingleColorPaletteWrapper />}
 				/>
 			</Routes>
 		);
